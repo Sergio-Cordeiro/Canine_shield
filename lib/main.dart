@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:canine_shield/newDog.dart';
-// import 'package:canine_shield/screens/newVaccine.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,6 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       routes: {
         '/addDog': (context) => const DogRegistrationScreen(),
-        // '/addVaccine': (context) => const VaccineRegistrationScreen(),
       },
     );
   }
@@ -26,8 +24,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Sua Carteira de Vacinação Canina'),
+        title: const Text(
+          'Sua Carteira de Vacinação Canina',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -40,30 +48,81 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.pets,
-                size: 100,
-                color: Colors.grey,
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.white,
+                child: Icon(
+                  Icons.pets,
+                  size: 80,
+                  color: Colors.grey[700],
+                ),
               ),
               const SizedBox(height: 20),
               const Text(
-                'CanineShield sua carteira de vacinação canina!',
-                style: TextStyle(fontSize: 20),
+                'CanineShield - sua carteira de vacinação canina!',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/addDog');
                 },
-                child: const Text('Adicionar novo cachorro'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Text(
+                    'Adicionar novo cachorro',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 0),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/addVaccine');
+                  // Navigator.pushNamed(context, '/addVaccine');
                 },
-                child: const Text('Meus cachorros'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  side: const BorderSide(
+                    color: Colors.green,
+                    width: 2,
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Text(
+                    'Meus cachorros',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
