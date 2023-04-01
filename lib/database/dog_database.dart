@@ -68,4 +68,15 @@ class DogDatabase {
     });
   }
 
+  Future<void> deleteDog(int id) async {
+    final db = await database;
+
+    await db.delete(
+      'dogs',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+
 }

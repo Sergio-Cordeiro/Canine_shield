@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:canine_shield/database/dog_database.dart';
 import 'package:canine_shield/models/dog.dart';
+import 'package:canine_shield/dogDetailScreen.dart';
 
 class DogListScreen extends StatefulWidget {
-  const DogListScreen({Key? key}) : super(key: key);
+  const DogListScreen({super.key});
 
   @override
   _DogListScreenState createState() => _DogListScreenState();
 }
 
 class _DogListScreenState extends State<DogListScreen> {
-  final _dogDatabase = DogDatabase();
+  final DogDatabase _dogDatabase = DogDatabase();
   List<Dog> _dogs = [];
   bool _isLoading = false;
 
@@ -43,20 +44,34 @@ class _DogListScreenState extends State<DogListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Cães'),
+        title: const Text('Dog List'),
       ),
       body: _isLoading
-          ? const Center(
-        child: CircularProgressIndicator(),
-      )
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
         itemCount: _dogs.length,
-        itemBuilder: (context, index) {
-          final dog = _dogs[index];
+        itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text(dog.name),
-            subtitle: Text('${dog.breed} - ${dog.age} anos'),
+            title: Text(_dogs[index].name),
+            subtitle: Text(_dogs[index].breed!),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DogDetailScreen(dog: _dogs[index])
+                ),
+              );
+            },
           );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          final result = await Navigator.pushNamed(context, '/addDog');
+          if (result != null && result == true) {
+            await _loadDogs();
+          }
         },
       ),
     );
