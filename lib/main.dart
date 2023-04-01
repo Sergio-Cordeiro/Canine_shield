@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DogRegistrationScreen()),
+                    MaterialPageRoute(builder: (context) => const DogRegistrationScreen()),
                   );
                 },
                 child: const Text('Adicionar novo cachorro'),

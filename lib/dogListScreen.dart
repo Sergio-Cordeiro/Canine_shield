@@ -3,6 +3,8 @@ import 'package:canine_shield/database/dog_database.dart';
 import 'package:canine_shield/models/dog.dart';
 import 'package:canine_shield/dogDetailScreen.dart';
 
+import 'newDog.dart';
+
 class DogListScreen extends StatefulWidget {
   const DogListScreen({super.key});
 
@@ -68,7 +70,10 @@ class _DogListScreenState extends State<DogListScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          final result = await Navigator.pushNamed(context, '/addDog');
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DogRegistrationScreen()),
+          );
           if (result != null && result == true) {
             await _loadDogs();
           }
