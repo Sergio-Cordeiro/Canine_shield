@@ -43,14 +43,18 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Nome',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                    borderSide:
+                        BorderSide(color: Theme.of(context).primaryColor),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
                 validator: (value) {
@@ -67,9 +71,13 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
               DropdownButtonFormField(
                 decoration: InputDecoration(
                   labelText: 'Raça',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                    borderSide:
+                        BorderSide(color: Theme.of(context).primaryColor),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
                 hint: const Text('Selecione uma raça'),
@@ -96,9 +104,13 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Idade',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                    borderSide:
+                        BorderSide(color: Theme.of(context).primaryColor),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
                 keyboardType: TextInputType.number,
