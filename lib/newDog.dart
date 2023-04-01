@@ -46,8 +46,12 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Nome',
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  ),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -60,8 +64,15 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
                 },
               ),
               const SizedBox(height: 16.0),
-              DropdownButton(
-                hint: const Text('Raça'),
+              DropdownButtonFormField(
+                decoration: InputDecoration(
+                  labelText: 'Raça',
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  ),
+                ),
+                hint: const Text('Selecione uma raça'),
                 value: _breed,
                 items: _breeds.map((breed) {
                   return DropdownMenuItem(
@@ -74,11 +85,21 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
                     _breed = value as String?;
                   });
                 },
+                validator: (value) {
+                  if (value == null) {
+                    return 'Por favor, selecione uma raça';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16.0),
               TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Idade',
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  ),
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
