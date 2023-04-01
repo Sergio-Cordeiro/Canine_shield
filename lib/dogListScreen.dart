@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:canine_shield/database/dog_database.dart';
 import 'package:canine_shield/models/dog.dart';
 import 'package:canine_shield/dogDetailScreen.dart';
-
 import 'newDog.dart';
 
 class DogListScreen extends StatefulWidget {
-  const DogListScreen({super.key});
+  const DogListScreen({Key? key}) : super(key: key);
 
   @override
   _DogListScreenState createState() => _DogListScreenState();
@@ -53,17 +52,20 @@ class _DogListScreenState extends State<DogListScreen> {
           : ListView.builder(
         itemCount: _dogs.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(_dogs[index].name),
-            subtitle: Text(_dogs[index].breed!),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DogDetailScreen(dog: _dogs[index])
-                ),
-              );
-            },
+          return Card(
+            child: ListTile(
+              title: Text(_dogs[index].name),
+              subtitle: Text(_dogs[index].breed!),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DogDetailScreen(dog: _dogs[index]),
+                  ),
+                );
+              },
+            ),
           );
         },
       ),
