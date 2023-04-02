@@ -52,8 +52,18 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text(widget.dog.name),
+        title: Text(widget.dog.name,
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -75,7 +85,20 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
                 onPressed: () async {
                   await deleteDog(context, int.parse(widget.dog.id));
                 },
-                child: const Text('Delete'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  'Delete',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
