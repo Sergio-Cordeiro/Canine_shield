@@ -44,8 +44,19 @@ class _DogListScreenState extends State<DogListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Dog List'),
+        title: const Text(
+          'Dog List',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -70,6 +81,7 @@ class _DogListScreenState extends State<DogListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
         child: const Icon(Icons.add),
         onPressed: () async {
           final result = await Navigator.push(

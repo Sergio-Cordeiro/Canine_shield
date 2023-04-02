@@ -35,8 +35,18 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Cadastro de Cachorro'),
+        title: const Text('Cadastro de Cachorro',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -149,6 +159,13 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
                     );
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
             ],
           ),
