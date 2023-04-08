@@ -62,4 +62,16 @@ class Dog {
 
     return Dog(id: id.toString(), name: name, breed: breed, age: age, gender: gender, castrated: castrated == 1 ? true : false);
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'breed': breed,
+      'age': age,
+      'gender': gender,
+      'castrated': castrated ? 1 : 0,
+    };
+  }
+
 }

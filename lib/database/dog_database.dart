@@ -80,5 +80,15 @@ class DogDatabase {
     );
   }
 
+  Future<void> updateDog(Dog dog) async {
+    final db = await database;
+
+    await db.update(
+      'dogs',
+      dog.toMap(),
+      where: 'id = ?',
+      whereArgs: [dog.id],
+    );
+  }
 
 }

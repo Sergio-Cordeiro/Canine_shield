@@ -150,7 +150,7 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
     );
 
     if (editedDog != null) {
-      // await _dogDatabase.updateDog(editedDog);
+      await _dogDatabase.updateDog(editedDog);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Cachorro atualizado com sucesso!'),
       ));
