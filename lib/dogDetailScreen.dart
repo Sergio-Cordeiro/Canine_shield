@@ -137,12 +137,35 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 16),
+            // Novo botão centralizado
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // ...código do novo botão...
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  minimumSize: Size(150, 50),
+                ),
+                child: const Text(
+                  'Carteira de vacinação',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-
   Future<void> editDog(BuildContext context, Dog dog) async {
     final editedDog = await Navigator.push(
       context,
