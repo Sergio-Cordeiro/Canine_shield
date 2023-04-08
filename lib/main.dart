@@ -1,3 +1,4 @@
+import 'package:canine_shield/dogListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:canine_shield/newDog.dart';
 
@@ -89,7 +90,10 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigator.pushNamed(context, '/addVaccine');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DogListScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
