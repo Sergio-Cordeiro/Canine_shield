@@ -11,6 +11,8 @@ class DogRegistrationScreen extends StatefulWidget {
   _DogRegistrationScreenState createState() => _DogRegistrationScreenState();
 }
 
+enum Gender { male, female } // enum para representar os gêneros
+
 class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _dogName;
@@ -18,6 +20,8 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
   late int _age;
   List<String> _breeds = [];
   final _dogDatabase = DogDatabase();
+  Gender _gender = Gender.male;
+  bool _castrated = false;
 
   @override
   void initState() {
@@ -137,6 +141,44 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
                   _age = int.parse(value!);
                 },
               ),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: RadioListTile(
+                      title: const Text('Macho'),
+                      value: Gender.male,
+                      groupValue: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          _gender = value as Gender;
+                        });
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: RadioListTile(
+                      title: const Text('Fêmea'),
+                      value: Gender.female,
+                      groupValue: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          _gender = value as Gender;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SwitchListTile(
+                title: const Text('Castrado'),
+                value: _castrated,
+                onChanged: (value) {
+                  setState(() {
+                    _castrated = value!;
+                  });
+                },
+              ),
               const SizedBox(height: 16.0),
               ElevatedButton(
                 child: const Text('Salvar'),
@@ -148,10 +190,11 @@ class _DogRegistrationScreenState extends State<DogRegistrationScreen> {
                       name: _dogName,
                       breed: _breed!,
                       age: _age,
+                      gender: _gender == Gender.male ? 'Macho' : 'Fêmea', // atribui o valor selecionado
                       id: '',
+                      castrated:_castrated,
                     );
                     // Salvar os dados do cachorro no banco de dados
-
                     await _dogDatabase.insertDog(dog);
                     Navigator.push(
                       context,
