@@ -38,7 +38,9 @@ class DogDatabase {
         id INTEGER PRIMARY KEY,
         name TEXT,
         breed TEXT,
-        age INTEGER
+        age INTEGER,
+        gender TEXT,
+        castrated BOOLEAN
       )
     ''');
   }
@@ -48,7 +50,7 @@ class DogDatabase {
 
     await db.insert(
       'dogs',
-      {'name': dog.name, 'breed': dog.breed, 'age': dog.age},
+      {'name': dog.name, 'breed': dog.breed, 'age': dog.age, 'gender': dog.gender, 'castrated': dog.castrated},
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }

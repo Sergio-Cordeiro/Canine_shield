@@ -54,12 +54,12 @@ class Dog {
     final breed = map['breed'] as String?;
     final age = map['age'] as int?;
     final gender = map['gender'] as String?;
-    final castrated = map['castrated'] as bool?;
+    final castrated = map['castrated'] as int?;
 
     if (id == null || name == null || breed == null || age == null || gender == null || castrated == null) {
       throw Exception('Dados do banco de dados inválidos para criar um objeto Dog');
     }
 
-    return Dog(id: id.toString(), name: name, breed: breed, age: age, gender: gender, castrated: castrated);
+    return Dog(id: id.toString(), name: name, breed: breed, age: age, gender: gender, castrated: castrated == 1 ? true : false);
   }
 }
