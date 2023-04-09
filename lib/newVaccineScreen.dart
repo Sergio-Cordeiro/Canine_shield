@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canine_shield/models/dog.dart';
 import 'package:canine_shield/services/dog_openWorm_service.dart';
+import 'package:intl/intl.dart';
 
 class NewVaccineScreen extends StatefulWidget {
   final Dog dog;
@@ -11,8 +12,13 @@ class NewVaccineScreen extends StatefulWidget {
 }
 
 class _NewVaccineScreenState extends State<NewVaccineScreen> {
+
   late Future<List<String>> _vaccinesFuture;
+  DateFormat dateFormat = DateFormat('dd/MM/yyyy');
   String? _selectedVaccine;
+  String? _selectedDateString;
+  DateTime _selectedDate = DateTime.now();
+  //TODO: duplicar variaveis de data
 
   @override
   void initState() {
@@ -69,14 +75,62 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
                 labelText: 'Data da aplicação',
                 border: OutlineInputBorder(),
               ),
+              onTap: () async {
+                final DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    _selectedDate = pickedDate;
+                    _selectedDateString = dateFormat.format(_selectedDate!);
+                  });
+                }
+              },
+              readOnly: true,
+              controller: TextEditingController(text: _selectedDateString),
             ),
+
+
+
             const SizedBox(height: 16),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Data do próximo reforço',
                 border: OutlineInputBorder(),
               ),
+              onTap: () async {
+                final DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    _selectedDate = pickedDate;
+                    _selectedDateString = dateFormat.format(_selectedDate!);
+                  });
+                }
+              },
+              readOnly: true,
+              controller: TextEditingController(text: _selectedDateString),
             ),
+
+
+
+            // TextFormField(
+            //   decoration: const InputDecoration(
+            //     labelText: 'Data do próximo reforço',
+            //     border: OutlineInputBorder(),
+            //   ),
+            // ),
+
+
+
+
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {

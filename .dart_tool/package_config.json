@@ -80,6 +80,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///Users/sergiocordeiro/.pub-cache/hosted/pub.dev/intl-0.17.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/sergiocordeiro/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
@@ -200,7 +206,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-01T10:36:10.202264Z",
+  "generated": "2023-04-09T07:11:50.952919Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }
