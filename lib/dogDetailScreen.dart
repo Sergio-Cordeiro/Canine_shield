@@ -1,3 +1,4 @@
+import 'package:canine_shield/vaccineCardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:canine_shield/models/dog.dart';
 import 'package:canine_shield/database/dog_database.dart';
@@ -142,6 +143,12 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VaccineCardScreen(dog: widget.dog),
+                    ),
+                  );
                   // ...código do novo botão...
                 },
                 style: ElevatedButton.styleFrom(
