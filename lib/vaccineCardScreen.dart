@@ -25,6 +25,12 @@ class VaccineCardScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Adicione aqui o código para cadastrar uma nova vacina
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
