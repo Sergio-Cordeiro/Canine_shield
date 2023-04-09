@@ -31,7 +31,7 @@ class VaccineCardScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const NewVaccineScreen(),
+              builder: (context) => NewVaccineScreen(dog: dog),
             ),
           );
         },
