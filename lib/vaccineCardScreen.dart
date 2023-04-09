@@ -1,3 +1,4 @@
+import 'package:canine_shield/services/newVaccineScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:canine_shield/models/dog.dart';
 
@@ -10,27 +11,33 @@ class VaccineCardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Carteira de vacinação'),
+        title: Text('Carteira de vacinação do ${dog.name} '),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text(
-              'Nome do cachorro: ${dog.name}',
-              style: const TextStyle(fontSize: 18),
+              'Teste de tela exibindo as vacinas',
+              style: TextStyle(fontSize: 18),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             // Adicione aqui a lista de vacinas do cachorro
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Adicione aqui o código para cadastrar uma nova vacina
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NewVaccineScreen(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
     );
   }
 }
+
