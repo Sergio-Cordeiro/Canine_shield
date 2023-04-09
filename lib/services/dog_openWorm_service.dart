@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class DogApiService {
+class DogOpenWormService {
   static const String _baseUrl = 'https://dog-api.kinduff.com/api/v1/vaccines';
 
   static Future<List<String>> getDogVaccines(String breed) async {

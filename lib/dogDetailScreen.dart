@@ -149,7 +149,6 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
                       builder: (context) => VaccineCardScreen(dog: widget.dog),
                     ),
                   );
-                  // ...código do novo botão...
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green,
