@@ -17,7 +17,9 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
   DateFormat dateFormat = DateFormat('dd/MM/yyyy');
   String? _selectedVaccine;
   String? _selectedDateString;
+  String? _selectedDateNextString;
   DateTime _selectedDate = DateTime.now();
+
   //TODO: duplicar variaveis de data
 
   @override
@@ -111,12 +113,12 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
                 if (pickedDate != null) {
                   setState(() {
                     _selectedDate = pickedDate;
-                    _selectedDateString = dateFormat.format(_selectedDate!);
+                    _selectedDateNextString = dateFormat.format(_selectedDate!);
                   });
                 }
               },
               readOnly: true,
-              controller: TextEditingController(text: _selectedDateString),
+              controller: TextEditingController(text: _selectedDateNextString),
             ),
 
 
