@@ -1,26 +1,32 @@
+import 'package:uuid/uuid.dart';
+
 class Vaccine {
-  final int id;
+  final String id;
   final String name;
-  final DateTime date;
+  final DateTime dateActually;
+  final DateTime dateNextVaccine;
   final int dogId;
 
   Vaccine({
-    required this.id,
+    String? id,
     required this.name,
-    required this.date,
+    required this.dateActually,
+    required this.dateNextVaccine,
     required this.dogId,
-  });
+  }) : id = id ?? const Uuid().v4();
 
   Vaccine copy({
-    int? id,
+    String? id,
     String? name,
-    DateTime? date,
+    DateTime? dateActually,
+    DateTime? dateNextVaccine,
     int? dogId,
   }) {
     return Vaccine(
       id: id ?? this.id,
       name: name ?? this.name,
-      date: date ?? this.date,
+      dateActually: dateActually ?? this.dateActually,
+      dateNextVaccine: dateNextVaccine ?? this.dateNextVaccine,
       dogId: dogId ?? this.dogId,
     );
   }
@@ -29,8 +35,9 @@ class Vaccine {
     return {
       'id': id,
       'name': name,
-      'date': date.toIso8601String(),
-      'dogId': dogId,
+      'dateActually': dateActually.toIso8601String(),
+      'dateNextVaccine': dateNextVaccine.toIso8601String(),
+      'dog_id': dogId,
     };
   }
 }

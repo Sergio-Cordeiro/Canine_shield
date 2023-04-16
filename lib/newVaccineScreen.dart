@@ -3,6 +3,9 @@ import 'package:canine_shield/models/dog.dart';
 import 'package:canine_shield/services/dog_openWorm_service.dart';
 import 'package:intl/intl.dart';
 
+import 'database/vaccine_database.dart';
+import 'models/vaccine.dart';
+
 class NewVaccineScreen extends StatefulWidget {
   final Dog dog;
   const NewVaccineScreen({Key? key, required this.dog}) : super(key: key);
@@ -14,13 +17,11 @@ class NewVaccineScreen extends StatefulWidget {
 class _NewVaccineScreenState extends State<NewVaccineScreen> {
 
   late Future<List<String>> _vaccinesFuture;
-  DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   String? _selectedVaccine;
   String? _selectedDateString;
   String? _selectedDateNextString;
   DateTime _selectedDate = DateTime.now();
-
-  //TODO: duplicar variaveis de data
 
   @override
   void initState() {
@@ -94,9 +95,6 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
               readOnly: true,
               controller: TextEditingController(text: _selectedDateString),
             ),
-
-
-
             const SizedBox(height: 16),
             TextFormField(
               decoration: const InputDecoration(
@@ -120,22 +118,24 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
               readOnly: true,
               controller: TextEditingController(text: _selectedDateNextString),
             ),
-
-
-
-            // TextFormField(
-            //   decoration: const InputDecoration(
-            //     labelText: 'Data do próximo reforço',
-            //     border: OutlineInputBorder(),
-            //   ),
-            // ),
-
-
-
-
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+
+
+                  final vaccine = Vaccine(
+                    name: _selectedVaccine!,
+                    dateActually: DateTime.parse(_selectedDateString!),
+                    dateNextVaccine: DateTime.parse(_selectedDateNextString!),
+                    dogId: int.parse(widget.dog.id),
+                  );
+                  await VaccineDatabase.instance.createVaccine(vaccine);
+                  Navigator.pop(context);
+
+
+
+
+
                 // Adicione aqui o código para salvar a vacina no banco de dados
               },
               child: const Text('Salvar'),

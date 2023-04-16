@@ -29,7 +29,8 @@ class VaccineDatabase {
       CREATE TABLE vaccines (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
-        date TEXT,
+        dateActually TEXT,
+        dateNextVaccine TEXT,
         dog_id INTEGER,
         FOREIGN KEY(dog_id) REFERENCES dogs(id) ON DELETE CASCADE
       )
@@ -39,8 +40,7 @@ class VaccineDatabase {
   Future<Vaccine> createVaccine(Vaccine vaccine) async {
     final db = await instance.database;
     final id = await db.insert('vaccines', vaccine.toJson());
-    return vaccine.copy(id: id);
+    return vaccine.copy(id: id.toString());
   }
-
 
 }
