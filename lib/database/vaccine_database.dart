@@ -43,4 +43,19 @@ class VaccineDatabase {
     return vaccine.copy(id: id.toString());
   }
 
+  Future<List<Vaccine>> getVaccines(int dogId) async {
+    final db = await instance.database;
+    final maps = await db.query('vaccines', where: 'dog_id = ?', whereArgs: [dogId]);
+
+    return List.generate(maps.length, (i) {
+      return Vaccine(
+        id: maps[i]['id'] as String,
+        name: maps[i]['name'] as String,
+        dateActually: maps[i]['dateActually'].toString(),
+        dateNextVaccine: maps[i]['dateNextVaccine'].toString(),
+        dogId: int.parse(maps[i]['dog_id'].toString()),
+      );
+    });
+  }
+
 }
