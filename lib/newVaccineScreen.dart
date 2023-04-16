@@ -17,7 +17,7 @@ class NewVaccineScreen extends StatefulWidget {
 class _NewVaccineScreenState extends State<NewVaccineScreen> {
 
   late Future<List<String>> _vaccinesFuture;
-  DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+  DateFormat dateFormat = DateFormat('dd-MM-yyyy');
   String? _selectedVaccine;
   String? _selectedDateString;
   String? _selectedDateNextString;
@@ -121,7 +121,6 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-
                   final vaccine = Vaccine.createNewVaccine(
                       _selectedVaccine!,
                       _selectedDateString!,
@@ -130,11 +129,6 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
                   );
                   await VaccineDatabase.instance.createVaccine(vaccine);
                   Navigator.pop(context);
-
-                //   name: _selectedVaccine!,
-                // dateActually: DateTime.parse(_selectedDateString!),
-                // dateNextVaccine: DateTime.parse(_selectedDateNextString!),
-                // dogId: int.parse(widget.dog.id),
               },
               child: const Text('Salvar'),
             ),
