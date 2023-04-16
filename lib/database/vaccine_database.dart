@@ -27,7 +27,7 @@ class VaccineDatabase {
   Future<void> _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE vaccines (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id TEXT PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         dateActually TEXT,
         dateNextVaccine TEXT,

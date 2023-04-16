@@ -122,21 +122,19 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
             ElevatedButton(
               onPressed: () async {
 
-
-                  final vaccine = Vaccine(
-                    name: _selectedVaccine!,
-                    dateActually: DateTime.parse(_selectedDateString!),
-                    dateNextVaccine: DateTime.parse(_selectedDateNextString!),
-                    dogId: int.parse(widget.dog.id),
+                  final vaccine = Vaccine.createNewVaccine(
+                      _selectedVaccine!,
+                      _selectedDateString!,
+                      _selectedDateNextString!,
+                      int.parse(widget.dog.id)
                   );
                   await VaccineDatabase.instance.createVaccine(vaccine);
                   Navigator.pop(context);
 
-
-
-
-
-                // Adicione aqui o código para salvar a vacina no banco de dados
+                //   name: _selectedVaccine!,
+                // dateActually: DateTime.parse(_selectedDateString!),
+                // dateNextVaccine: DateTime.parse(_selectedDateNextString!),
+                // dogId: int.parse(widget.dog.id),
               },
               child: const Text('Salvar'),
             ),
