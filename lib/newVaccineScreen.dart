@@ -32,8 +32,18 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Nova vacina'),
+          title: const Text('Nova vacina',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -119,19 +129,49 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
               controller: TextEditingController(text: _selectedDateNextString),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                  final vaccine = Vaccine.createNewVaccine(
-                      _selectedVaccine!,
-                      _selectedDateString!,
-                      _selectedDateNextString!,
-                      int.parse(widget.dog.id)
-                  );
-                  await VaccineDatabase.instance.createVaccine(vaccine);
-                  Navigator.pop(context);
-              },
-              child: const Text('Salvar'),
+
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final vaccine = Vaccine.createNewVaccine(
+                        _selectedVaccine!,
+                        _selectedDateString!,
+                        _selectedDateNextString!,
+                        int.parse(widget.dog.id)
+                    );
+                    await VaccineDatabase.instance.createVaccine(vaccine);
+                    Navigator.pop(context);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                  ),
+                  child: const Text('Salvar'),
+                ),
+              ),
             ),
+
+
+
+
+            // ElevatedButton(
+            //   onPressed: () async {
+            //       final vaccine = Vaccine.createNewVaccine(
+            //           _selectedVaccine!,
+            //           _selectedDateString!,
+            //           _selectedDateNextString!,
+            //           int.parse(widget.dog.id)
+            //       );
+            //       await VaccineDatabase.instance.createVaccine(vaccine);
+            //       Navigator.pop(context);
+            //   },
+            //   style: ButtonStyle(
+            //     backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+            //   ),
+            //   child: const Text('Salvar'),
+            // ),
           ],
         ),
       ),
