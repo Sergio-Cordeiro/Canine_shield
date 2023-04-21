@@ -1,6 +1,9 @@
 import 'package:canine_shield/newVaccineScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:canine_shield/models/dog.dart';
+import 'package:canine_shield/models/vaccine.dart';
+import 'package:canine_shield/database/vaccine_database.dart';
+import 'database/vaccine_database.dart';
 
 class VaccineCardScreen extends StatelessWidget {
   final Dog dog;
@@ -12,7 +15,8 @@ class VaccineCardScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Carteira de vacinação do ${dog.name}',
+        title: Text(
+          'Carteira de vacinação do ${dog.name}',
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -24,16 +28,26 @@ class VaccineCardScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Teste de tela exibindo as vacinas',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 16),
-            // Adicione aqui a lista de vacinas do cachorro
-          ],
+        child: FutureBuilder<List<Vaccine>>(
+          future: VaccineDatabase.instance.getVaccinesByDogId(int.parse(dog.id)),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }
+
+            final vaccines = snapshot.data!;
+
+            return ListView.builder(
+              itemCount: vaccines.length,
+              itemBuilder: (context, index) {
+                final vaccine = vaccines[index];
+                return ListTile(
+                  title: Text(vaccine.name),
+                  subtitle: Text('Data da próxima vacina: ${vaccine.dateNextVaccine}'),
+                );
+              },
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -51,4 +65,3 @@ class VaccineCardScreen extends StatelessWidget {
     );
   }
 }
-
