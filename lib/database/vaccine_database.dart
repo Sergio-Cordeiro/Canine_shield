@@ -58,4 +58,13 @@ class VaccineDatabase {
     });
   }
 
+  Future<List<Vaccine>> getVaccinesByDogId(int dogId) async {
+    final db = await instance.database;
+    final List<Map<String, dynamic>> maps = await db.query('vaccines', where: 'dog_id = ?', whereArgs: [dogId]);
+
+    return List.generate(maps.length, (i) {
+      return Vaccine.fromJson(maps[i]);
+    });
+  }
+
 }

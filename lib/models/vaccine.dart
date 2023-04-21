@@ -48,4 +48,15 @@ class Vaccine {
       'dateNextVaccine': dateNextVaccine,
       'dog_id': dogId,
   };
+
+  factory Vaccine.fromJson(Map<String, dynamic> json) {
+    return Vaccine(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      dateActually: json['dateActually'] as String,
+      dateNextVaccine: json['dateNextVaccine'] as String,
+      dogId: json['dog_id'] as int,
+    );
+  }
+
 }
