@@ -84,7 +84,7 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.delete),
-              onPressed: () => deleteDog(context, widget.dog.id as int),
+              onPressed: () => deleteDog(context, int.parse(widget.dog.id)),
             ),
           ],
         ),
