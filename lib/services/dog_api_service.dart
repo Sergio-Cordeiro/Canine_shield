@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class DogApiService {
@@ -16,4 +17,12 @@ class DogApiService {
       throw Exception('Failed to load dog breeds');
     }
   }
+
+  static Future<String> getDogImageByBreed(String breed) async {
+    final response = await http.get(Uri.parse('https://dog.ceo/api/breed/$breed/images/random'));
+    final data = json.decode(response.body);
+    final imageUrl = data['message'];
+    return imageUrl;
+  }
+
 }
