@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:canine_shield/database/dog_database.dart';
 import 'package:canine_shield/models/dog.dart';
-import 'package:canine_shield/dogDetailScreen.dart';
+import 'dogDetailScreen.dart';
 import 'newDog.dart';
 
 class DogListScreen extends StatefulWidget {
@@ -51,6 +51,7 @@ class _DogListScreenState extends State<DogListScreen> {
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
+            fontSize: 28,
           ),
         ),
         backgroundColor: Colors.white,
@@ -65,14 +66,25 @@ class _DogListScreenState extends State<DogListScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-              title: Text(_dogs[index].name),
-              subtitle: Text(_dogs[index].breed!),
+              title: Text(
+                _dogs[index].name,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                _dogs[index].breed!,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        DogDetailScreen(dog: _dogs[index]),
+                    builder: (context) =>   DogDetailScreen(dog: _dogs[index]),
                   ),
                 );
               },
