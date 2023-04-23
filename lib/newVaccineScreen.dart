@@ -129,7 +129,6 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
               controller: TextEditingController(text: _selectedDateNextString),
             ),
             const SizedBox(height: 16),
-
             Align(
               alignment: Alignment.center,
               child: SizedBox(
@@ -152,26 +151,6 @@ class _NewVaccineScreenState extends State<NewVaccineScreen> {
                 ),
               ),
             ),
-
-
-
-
-            // ElevatedButton(
-            //   onPressed: () async {
-            //       final vaccine = Vaccine.createNewVaccine(
-            //           _selectedVaccine!,
-            //           _selectedDateString!,
-            //           _selectedDateNextString!,
-            //           int.parse(widget.dog.id)
-            //       );
-            //       await VaccineDatabase.instance.createVaccine(vaccine);
-            //       Navigator.pop(context);
-            //   },
-            //   style: ButtonStyle(
-            //     backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            //   ),
-            //   child: const Text('Salvar'),
-            // ),
           ],
         ),
       ),
