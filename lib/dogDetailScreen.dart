@@ -73,22 +73,22 @@ class _DogDetailScreenState extends State<DogDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Breed: ${widget.dog.breed}',
+              'Raça: ${widget.dog.breed}',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'Age: ${widget.dog.age}',
+              'Idade: ${widget.dog.age} anos',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'Gender: ${widget.dog.gender}',
+              'Genero: ${widget.dog.gender}',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'Castrated: ${widget.dog.castrated ? 'Sim' : 'Não'}',
+              'Castrado?: ${widget.dog.castrated ? 'Sim' : 'Não'}',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 16),
